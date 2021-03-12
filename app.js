@@ -112,4 +112,57 @@ function selectRole() {
 }
 
 // Role query for managers for adding employee
+var managerArr = [];
+function selectManager() {
+    connection.query("SELECT first_name, last_name FROM employee WHERE manager_id IS NULL", function(err, res) {
+        if (err) throw err
+        for (var i = 0; i < res.length; i++) {
+            managerArr.push(res[i].first_name);
+        }
+    })
+    return managerArr;
+}
 
+// Add Employee
+function addEmployee() {
+    inquirer.prompt([
+        {
+            name: 'firstname',
+            type: 'input',
+            message: 'Enter employee first name '
+        },
+        {
+            name: 'lastname',
+            type: 'input',
+            message: 'Enter employee last name'
+        },
+        {
+            name: 'role',
+            type: 'list',
+            message: 'Enter employee role',
+            choices: selectRole()
+        },
+        {
+            name: 'choice',
+            type: 'rawlist',
+            message: 'Who is the manager for this employee',
+            choices: selectManager()
+        }
+    ]).then(function (val) {
+        var roleId = selectRole().indexOf(val.role) + 1;
+        var managerId = selectManager().indexOf(val.choice) + 1;
+
+        connection.query("INSERT INTO employee SET ?", 
+        {
+            first_name: val.firstName,
+            last_name: val.lastName,
+            manager_id: managerId,
+            role_id: roleId
+        },
+        function (err) {
+            if (err) throw err
+            console.table(val);
+            startPrompt();
+        });
+    });
+}
