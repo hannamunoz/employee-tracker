@@ -1,0 +1,24 @@
+{
+  "name": "mysql-hw",
+  "version": "1.0.0",
+  "description": "Employee tracker",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannamunoz/employee-tracker.git"
+  },
+  "author": "Hanna Munoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannamunoz/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/hannamunoz/employee-tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
