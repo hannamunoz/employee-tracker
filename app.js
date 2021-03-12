@@ -99,6 +99,17 @@ function viewAllByDepartment() {
     });
 }
 
-// Role query and role title for adding employee
+// Role query for role title for adding employee
 var rolesArr = [];
-function 
+function selectRole() {
+    connection.query("SELECT * FROM role", function(err, res) {
+        if (err) throw err
+        for (var i = 0; i < res.length; i++) {
+            rolesArr.push(res[i].title);
+        }
+    });
+    return rolesArr;
+}
+
+// Role query for managers for adding employee
+
