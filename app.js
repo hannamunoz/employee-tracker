@@ -1,7 +1,11 @@
 // Setup dependencies
 const inquirer = require('inquirer');
 const mysql = require('mysql');
-const consoleTable = require('console.table');
+var fs = require('fs');
+const consTable = require('console.table');
+const { connect } = require('http2');
+
+const SQL_FILE = fs.readFileSync('./schema.sql').toString();
 
 // Setup connection
 const connection = mysql.createConnection({
@@ -9,14 +13,18 @@ const connection = mysql.createConnection({
     port: 3306,
     user: 'root',
     password: 'root',
-    database: 'employee_trackerDB'
+    multipleStatements: true
 });
 
 // Setup connection ID
 connection.connect(function(err) {
     if (err) throw err
-    console.log(`Connected as ID ${connection.threadID}`);
+    console.log("Connected as ID" + connection.threadId);
     startPrompt();
+});
+
+connection.query(SQL_FILE, function(err, res) {
+    if (err) throw err;
 });
 
 // Starting Prompt

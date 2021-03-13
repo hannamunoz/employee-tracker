@@ -1,9 +1,9 @@
 -- Create the database --
-DROP DATABASE IF EXISTS employee_trackerdb;
+DROP DATABASE IF EXISTS employee_trackerDB;
 
-CREATE DATABASE employee_trackerdb;
+CREATE DATABASE employee_trackerDB;
 
-USE employee_trackerdb;
+USE employee_trackerDB;
 
 -- Departments table --
 CREATE TABLE department (
@@ -11,7 +11,7 @@ CREATE TABLE department (
     name VARCHAR(30)
 );
 
--- Role table -- 
+-- role table -- 
 CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30),
@@ -44,3 +44,38 @@ VALUE ("legal");
 -- Feed into employee for role --
 INSERT INTO role (title, salary, department_id)
 VALUE ("Lead Engineer", 150000, 2);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Legal Team Lead", 250000, 4);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Accountant", 125000, 3);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Sales Lead", 100000, 1);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Salesperson", 80000, 1);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Software Engineer", 120000, 2);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Lawyer", 190000, 4);
+
+-- Employee values --
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Hanna", "Monzo", null, 2);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Taisha", "Pelker", null, 3);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Chase", "Trenton", null, 4);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Grace", "Tailor", null, 1);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Trisha", "Cooler", 1, 4);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Aaron", "Crusher", 2, 2);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Tony", "Power", 3, 1);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Lance", "Strong", 3, 2);
+
+-- Selecting --
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
