@@ -1,7 +1,7 @@
 // Setup dependencies
 const inquirer = require('inquirer');
 const mysql = require('mysql');
-const console = require('console.table');
+const consoleTable = require('console.table');
 
 // Setup connection
 const connection = mysql.createConnection({
