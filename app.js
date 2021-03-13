@@ -177,7 +177,7 @@ function addEmployee() {
 
 // Update employee info
 function updateEmployee() {
-    connection.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function(err, res) {
+    connection.query("SELECT employee.last_name, employee.first_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function(err, res) {
         if (err) throw err
         console.log(res);
         inquirer.prompt([
@@ -201,12 +201,9 @@ function updateEmployee() {
             },
         ]).then(function(val) {
             var roleId = selectRole().indexOf(val.role) + 1;
-            connection.query("UPDATE employee SET WHERE ?",
+            connection.query(`UPDATE employee SET employee.role_id = ${roleId} WHERE ?`,
             {
                 last_name: val.lastName
-            },
-            {
-                role_id: roleId
             },
             function(err){
                 if (err) throw err
